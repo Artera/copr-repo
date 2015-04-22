@@ -1,3 +1,11 @@
+%if 0%{?rhel} < 7
+%bcond_with init_systemd
+%bcond_without init_sysv
+%else
+%bcond_with init_sysv
+%bcond_without init_systemd
+%endif
+
 Name:           fcgiwrap
 Version:        1.1.0
 Release:        1%{?dist}
@@ -13,6 +21,11 @@ BuildRequires: automake
 BuildRequires: fcgi-devel
 Requires:      spawn-fcgi
 
+%{?with_init_systemd:BuildRequires: systemd-devel}
+%if %{with init_systemd}
+%{?systemd_requires: %systemd_requires}
+%endif
+
 %description
 fcgiwrap is a simple server for running CGI applications over FastCGI.
 It hopes to provide clean CGI support to Nginx (and other web servers
@@ -24,6 +37,7 @@ that may need it).
 
 
 %build
+sed 's#=http#=apache#g' -i systemd/fcgiwrap.service
 autoreconf -i
 %configure --prefix=""
 make
@@ -36,6 +50,10 @@ make install DESTDIR=%{buildroot}
 %doc README.rst
 %{_sbindir}/fcgiwrap
 %{_mandir}/man8/fcgiwrap.8*
+%if %{with init_systemd}
+%{_unitdir}/%{name}.service
+%{_unitdir}/%{name}.socket
+%endif
 
 %changelog
 
