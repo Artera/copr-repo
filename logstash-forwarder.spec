@@ -15,7 +15,7 @@ Summary:        Logstash shipping tool using the lumberjack protocol
 Version:        0.4.0
 Release:        4.20150223gita718299%{?dist}
 License:        Apache Software License 2.0
-Group:          MAILRU
+Group:          System Environment/Daemons
 Prefix:         %{_prefix}
 
 Url:            https://github.com/elasticsearch/logstash-forwarder
