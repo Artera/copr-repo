@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+TARGET="$1"
+if [ ! -f /etc/mock/"$1".cfg ]; then
+	TARGET=epel-7-x86_64
+else
+	shift
+fi
+
+RESULTDIR="$HOME/rpmbuild/$TARGET"
+mkdir -p "$RESULTDIR"
+
+exec mock -r "$TARGET" --resultdir "$RESULTDIR" "$@"

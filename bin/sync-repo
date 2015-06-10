@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+REPOROOT=$HOME/rpmbuild
+REMOTEROOT=/home/arch32/webroot/htdocs/artera
+
+for relver in {5..7}; do
+	rsync --delete --delete-excluded -av --exclude "*.log" \
+	      $REPOROOT/epel-$relver-x86_64/ \
+	      massimiliano@repo.artera.ws:$REMOTEROOT/rhel$relver/
+done
