@@ -141,8 +141,7 @@ chown -R piler:piler /var/lib/{run,piler}
 
 echo /usr/lib > /etc/ld.so.conf.d/piler.conf
 ldconfig
-echo this is the postinstall stuff...
-echo run /usr/libexec/piler/postinstall.sh manually to configure piler
+echo "\trun /usr/share/piler/postinstall.sh manually to configure piler"
 
 
 %postun
@@ -155,8 +154,8 @@ groupdel piler
 
 
 %pre
-groupadd piler
-useradd -g piler -s /bin/sh -d /var/piler piler
+groupadd -r piler
+useradd -g piler -s /sbin/nologin -r -d /var/lib/piler piler
 usermod -L piler
 if [ -d /var/piler ]; then chmod 755 /var/piler; fi
 
