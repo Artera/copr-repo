@@ -40,9 +40,6 @@ sed -e 's/ -o $(RUNNING_USER)//' \
     -e 's/ -g $(RUNNING_GROUP)//' \
     -i {,etc/,src/}Makefile.in
 %configure \
-  --prefix=/usr \
-  --sysconfdir=/etc \
-  --libdir=/usr/lib64 \
   --localstatedir=/var/lib \
   --libexecdir=/usr/share \
   --enable-starttls \
