@@ -8,8 +8,8 @@
 
 Summary: An SSL-encrypting socket wrapper
 Name: stunnel
-Version: 5.32
-Release: 2%{?dist}
+Version: 5.35
+Release: 1%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: http://www.stunnel.org/
@@ -109,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 - Sourced URL of sha256 hash file in spec file.
 
 * Tue Mar 26 2013 Avesh Agarwal <avagarwa@redhat.com> - 4.55-2
-- Resolves: 927841 
+- Resolves: 927841
 
 * Mon Mar 4 2013 Avesh Agarwal <avagarwa@redhat.com> - 4.55-1
 - New upstream realease 4.55

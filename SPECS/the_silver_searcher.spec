@@ -1,7 +1,7 @@
 %global bashcompdir /usr/share/bash-completion
 
 Name:           the_silver_searcher
-Version:        0.29.1
+Version:        0.32.0
 Release:        1%{?dist}
 Summary:        Super-fast text searching tool (ag)
 Group:          Applications/Text
