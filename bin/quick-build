@@ -4,8 +4,8 @@ set -e
 NAME=$1
 RELVER=${2:-7}
 TARGET=epel-$RELVER-x86_64
-RPMHOME="$HOME"/rpmbuild
-RESULTDIR="$RPMHOME"/$TARGET
+RPMHOME="${RPMHOME:-"$HOME/rpmbuild"}"
+RESULTDIR="${RESULTDIR:-"$RPMHOME/$TARGET"}"
 
 [ $RELVER = 5 ] && SUMTYPE="-s sha1" || SUMTYPE=""
 
@@ -13,10 +13,9 @@ mkdir -p "$RESULTDIR"
 
 rm -f "$RESULTDIR"/$NAME-*.src.rpm
 spectool -g -R "$RPMHOME"/SPECS/$NAME.spec
-mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" --buildsrpm --spec "$RPMHOME"/SPECS/$NAME.spec --sources "$RPMHOME"/SOURCES/
-mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" rebuild "$RESULTDIR"/$NAME-*.src.rpm
+/usr/bin/mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" --buildsrpm --spec "$RPMHOME"/SPECS/$NAME.spec --sources "$RPMHOME"/SOURCES/
+/usr/bin/mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" rebuild "$RESULTDIR"/$NAME-*.src.rpm
 
 cd "$RESULTDIR"
 rpm --resign *.rpm # iwi..
 createrepo $SUMTYPE --excludes "*.src.rpm" .
-sync-repo

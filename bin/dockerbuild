@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+BASEDIR="$(dirname "$(dirname "$(readlink -fn "$0")")")"
+cd "$BASEDIR"
+
+IMAGE=centos7-mock
+
+if [ -z "$(docker images -q $IMAGE)" ]; then
+  docker build -t $IMAGE .
+fi
+
+docker run --privileged=true -it -v "$PWD:/home/builder/rpmbuild" -v "$HOME/.gnupg:/home/builder/.gnupg" $IMAGE:latest "$@"
+
+# bin/sync-repos

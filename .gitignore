@@ -1,4 +1,7 @@
+.*
+!.gitignore
 /epel-*
+/SOURCES/*
 *.zip
 *.jar
 *.tar
