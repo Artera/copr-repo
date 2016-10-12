@@ -3,7 +3,7 @@ set -e
 BASEDIR="$(dirname "$(dirname "$(readlink -fn "$0")")")"
 cd "$BASEDIR"
 
-REMOTEROOT=/home/arch32/webroot/htdocs/artera
+REMOTEROOT=/home/massimiliano/www
 
 for relver in {5..7}; do
 	rsync --delete --delete-excluded -av --exclude "*.log" \
