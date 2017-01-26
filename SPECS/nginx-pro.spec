@@ -87,7 +87,7 @@ Conflicts: nginx
 
 Summary: High performance web server
 Name: nginx-pro
-Version: 1.11.5
+Version: 1.11.8
 Release: 1%{?dist}.ngx
 Vendor: nginx inc.
 URL: http://nginx.org/
@@ -100,16 +100,19 @@ URL: http://nginx.org/
 %define _redisver      0.3.8
 %define _pagespeedver  latest-stable
 %define _psolver       1.11.33.4
-%define _njsver        0.1.3
+%define _njsver        0.1.7
+
+%define _ngxbrotliver  bfd2885b2da4d763fed18f49216bb935223cd34b
+%define _brotliver     222564a95d9ab58865a096b8d9f7324ea5f2e03e
 
 # openresty
 %define _echo_ver         0.60
-%define _lua_ver          0.10.6
+%define _lua_ver          0.10.7
 %define _srcache_ver      0.31
 %define _set_misc_ver     0.31
 %define _redis2_ver       0.13
 %define _memc_ver         0.17
-%define _headers_more_ver 0.31
+%define _headers_more_ver 0.32
 
 Source0: http://nginx.org/download/nginx-%{version}.tar.gz
 Source1: nginx.logrotate
@@ -137,6 +140,11 @@ Source23: https://github.com/pagespeed/ngx_pagespeed/archive/latest-stable/pages
 Source24: https://dl.google.com/dl/page-speed/psol/%{_psolver}.tar.gz
 Source25: http://hg.nginx.org/njs/archive/%{_njsver}.tar.gz
 Source26: nginx-debug.service
+Source27: https://github.com/google/ngx_brotli/archive/%{_ngxbrotliver}/ngx_brotli-%{_ngxbrotliver}.tar.gz
+Source28: https://github.com/google/brotli/archive/%{_brotliver}/brotli-%{_brotliver}.tar.gz
+
+Source50: https://github.com/openresty/redis2-nginx-module/commit/8cc7304787ae9542db4feb50d9e27beb485caa0f.patch
+Source51: https://github.com/openresty/memc-nginx-module/commit/c08cb7043440e427867838caf21cfd1e6cb2127a.patch
 
 License: 2-clause BSD-like license
 
@@ -166,12 +174,25 @@ a mail proxy server.
 %setup -T -D -b 23 -n nginx-%{version}
 %setup -T -D -b 24 -n nginx-%{version}
 %setup -T -D -b 25 -n nginx-%{version}
+%setup -T -D -b 27 -n nginx-%{version}
+%setup -T -D -b 28 -n nginx-%{version}
 sed -e 's|%%DEFAULTSTART%%|2 3 4 5|g' -e 's|%%DEFAULTSTOP%%|0 1 6|g' \
     -e 's|%%PROVIDES%%|nginx|g' < %{SOURCE2} > nginx.init
 sed -e 's|%%DEFAULTSTART%%||g' -e 's|%%DEFAULTSTOP%%|0 1 2 3 4 5 6|g' \
     -e 's|%%PROVIDES%%|nginx-debug|g' < %{SOURCE2} > nginx-debug.init
 
 %build
+
+cd %{_builddir}/redis2-nginx-module-0.13
+patch -p1 -i %{SOURCE50}
+
+cd %{_builddir}/memc-nginx-module-0.17
+patch -p1 -i %{SOURCE51}
+
+cd %{_builddir}/ngx_brotli-%{_ngxbrotliver}/deps
+rm -rf brotli
+ln -s ../../brotli-%{_brotliver} brotli
+
 cd %{_builddir}/ngx_pagespeed-%{_pagespeedver}
 ln -s ../psol
 
@@ -226,15 +247,15 @@ COMMON_CONFIGURE_ARGS=(
         --with-http_image_filter_module=dynamic
         --with-stream=dynamic
         --with-stream_ssl_module
-		--with-stream_realip_module
-		--with-stream_ssl_preread_module
+        --with-stream_realip_module
+        --with-stream_ssl_preread_module
         --with-stream_geoip_module=dynamic
         --with-http_perl_module=dynamic
         --with-mail=dynamic
         --with-mail_ssl_module
         --with-file-aio
         --with-threads
-		--with-http_auth_request_module
+        --with-http_auth_request_module
         --add-dynamic-module=../ngx_devel_kit-%{_devkitver}
         --add-dynamic-module=../ngx_cache_purge-%{_cachepurgever}
         --add-module=../nginx-dav-ext-module-%{_davextver}
@@ -250,9 +271,12 @@ COMMON_CONFIGURE_ARGS=(
         --add-dynamic-module=../redis2-nginx-module-%{_redis2_ver}
         --add-dynamic-module=../memc-nginx-module-%{_memc_ver}
         --add-dynamic-module=../headers-more-nginx-module-%{_headers_more_ver}
+        --add-dynamic-module=../ngx_brotli-%{_ngxbrotliver}
         --with-ld-opt="$RPM_LD_FLAGS -Wl,-E"
         --with-cc-opt="%{optflags} $(pcre-config --cflags)"
 )
+
+export NGX_BROTLI_STATIC_MODULE_ONLY=1
 
 cd %{bdir}
 ./configure "${COMMON_CONFIGURE_ARGS[@]}" --with-debug
