@@ -1,5 +1,6 @@
 FROM centos:7
 
+RUN yum update -y
 RUN yum install -y pigz createrepo mock rpmdevtools deltarpm rpm-sign
 RUN useradd -u 1000 -G mock builder
 
