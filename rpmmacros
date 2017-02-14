@@ -1,3 +1,5 @@
-%_topdir /home/builder/rpmbuild
+%_topdir _
+%_specdir _
+%_sourcedir _
 %_signature gpg
 %_gpg_name "massimilianotorromeo@artera.it"

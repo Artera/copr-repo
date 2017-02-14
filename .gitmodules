@@ -1,0 +1,18 @@
+[submodule "packages/GeoIP-GeoLite-data"]
+	path = packages/GeoIP-GeoLite-data
+	url = https://src.fedoraproject.org/git/rpms/GeoIP-GeoLite-data.git
+[submodule "packages/GeoIP"]
+	path = packages/GeoIP
+	url = https://src.fedoraproject.org/git/rpms/GeoIP.git
+[submodule "packages/gitflow"]
+	path = packages/gitflow
+	url = https://src.fedoraproject.org/git/rpms/gitflow.git
+[submodule "packages/stunnel"]
+	path = packages/stunnel
+	url = https://src.fedoraproject.org/git/rpms/stunnel.git
+[submodule "packages/geoipupdate"]
+	path = packages/geoipupdate
+	url = https://src.fedoraproject.org/git/rpms/geoipupdate.git
+[submodule "packages/postfix"]
+	path = packages/postfix
+	url = https://src.fedoraproject.org/git/rpms/postfix.git

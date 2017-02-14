@@ -6,14 +6,20 @@ RELVER=${2:-7}
 TARGET=epel-$RELVER-x86_64
 RPMHOME="${RPMHOME:-"$HOME/rpmbuild"}"
 RESULTDIR="${RESULTDIR:-"$RPMHOME/$TARGET"}"
+PKGHOME="$RPMHOME/packages/$NAME"
 
 [ $RELVER = 5 ] && SUMTYPE="-s sha1" || SUMTYPE=""
+
+sed -r -e "s@^%_topdir .*@%_topdir $PKGHOME@" \
+       -e "s@^%_specdir .*@%_specdir $PKGHOME@" \
+       -e "s@^%_sourcedir .*@%_sourcedir $PKGHOME@" \
+       -i "$HOME"/.rpmmacros
 
 mkdir -p "$RESULTDIR"
 
 rm -f "$RESULTDIR"/$NAME-*.src.rpm
-spectool -g -R "$RPMHOME"/SPECS/$NAME.spec
-/usr/bin/mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" --buildsrpm --spec "$RPMHOME"/SPECS/$NAME.spec --sources "$RPMHOME"/SOURCES/
+spectool -d "%_topdir $PKGHOME" -d "%_specdir $PKGHOME" -d "%_sourcedir $PKGHOME" -g -R "$PKGHOME"/$NAME.spec
+/usr/bin/mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" --buildsrpm --spec "$PKGHOME"/$NAME.spec --sources "$PKGHOME"
 /usr/bin/mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" rebuild "$RESULTDIR"/$NAME-*.src.rpm
 
 cd "$RESULTDIR"
