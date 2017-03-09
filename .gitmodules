@@ -16,3 +16,6 @@
 [submodule "packages/postfix"]
 	path = packages/postfix
 	url = https://src.fedoraproject.org/git/rpms/postfix.git
+[submodule "packages/git"]
+	path = packages/git
+	url = https://src.fedoraproject.org/git/rpms/git.git
