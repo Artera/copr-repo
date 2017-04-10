@@ -19,3 +19,6 @@
 [submodule "packages/git"]
 	path = packages/git
 	url = https://src.fedoraproject.org/git/rpms/git.git
+[submodule "packages/nginx"]
+	path = packages/nginx
+	url = https://src.fedoraproject.org/git/rpms/nginx.git
