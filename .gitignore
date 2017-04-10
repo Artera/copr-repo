@@ -2,6 +2,7 @@
 !.gitignore
 /epel-*
 /SOURCES/*
+/cache/
 *.zip
 *.jar
 *.tar

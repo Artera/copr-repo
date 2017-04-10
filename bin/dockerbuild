@@ -9,6 +9,12 @@ if [ -z "$(docker images -q $IMAGE)" ]; then
   docker build -t $IMAGE .
 fi
 
-docker run --privileged=true -it -v "$PWD:/home/builder/rpmbuild" -v "$HOME/.gnupg:/home/builder/.gnupg" $IMAGE:latest "$@"
+mkdir -p cache
+docker run --privileged=true -it \
+  -v "$PWD:/home/builder/rpmbuild" \
+  -v "$HOME/.gnupg:/home/builder/.gnupg" \
+  -v "$PWD/cache:/var/cache/mock" \
+  -v "$PWD/mock.cfg:/etc/mock/default.cfg" \
+  $IMAGE:latest "$@"
 
 # bin/sync-repos

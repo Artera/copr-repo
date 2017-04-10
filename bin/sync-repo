@@ -5,7 +5,7 @@ cd "$BASEDIR"
 
 REMOTEROOT=/home/massimiliano/www
 
-for relver in {5..7}; do
+for relver in {6..7}; do
 	rsync --delete --delete-excluded -av --exclude "*.log" \
 	      ./epel-$relver-x86_64/ \
 	      repo.artera.ws:$REMOTEROOT/rhel$relver/
