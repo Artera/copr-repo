@@ -1,20 +1,18 @@
 Summary: Redis 2.0 protocol module
 Name: nginx-mod-redis2
-Version: 0.13
+Version: 0.14
 Release: 1%{?dist}
 Vendor: Artera
 URL: https://github.com/openresty/redis2-nginx-module
 
 %define _modname            redis2
-%define _nginxver           1.10.2
+%define _nginxver           1.12.2
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 %define mod_build_dir       %{_builddir}/%{_modname}-%{version}
 
 Source0: http://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/openresty/redis2-nginx-module/archive/v%{version}/%{_modname}-%{version}.tar.gz
-
-Patch0: https://github.com/openresty/redis2-nginx-module/commit/8cc7304787ae9542db4feb50d9e27beb485caa0f.patch
 
 Requires: nginx
 BuildRequires: nginx
@@ -42,7 +40,6 @@ Redis 2.0 protocol module.
 %prep
 %setup -q -n nginx-%{_nginxver}
 %setup -T -D -b 1 -n %{_modname}-nginx-module-%{version}
-%patch0 -p1
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}

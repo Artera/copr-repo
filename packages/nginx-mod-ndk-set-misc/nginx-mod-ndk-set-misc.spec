@@ -8,7 +8,7 @@ Release: 1%{?dist}
 Vendor: Artera
 URL: https://github.com/openresty/echo-nginx-module
 
-%define _nginxver           1.10.2
+%define _nginxver           1.12.2
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 
