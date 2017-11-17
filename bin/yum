@@ -2,4 +2,4 @@
 set -e
 BASEDIR="$(dirname "$(dirname "$(readlink -fn "$0")")")"
 cd "$BASEDIR"
-exec bin/dockerrun centos7-mock:latest "$@"
+exec bin/dockerrun --entrypoint /bin/sudo centos7-mock:latest /bin/yum "$@"
