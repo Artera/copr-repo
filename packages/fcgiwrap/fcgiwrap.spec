@@ -8,7 +8,7 @@
 
 Name:           fcgiwrap
 Version:        1.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Simple FastCGI wrapper for CGI scripts
 License:        MIT
 URL:            http://nginx.localdomain.pl/wiki/FcgiWrap
