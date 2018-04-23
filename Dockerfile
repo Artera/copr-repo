@@ -10,6 +10,7 @@ RUN echo "config_opts['cache_topdir'] = '/var/cache/mock'" >> /etc/mock/site-def
 
 COPY bin/quick-build /usr/local/bin/quick-build
 COPY rpmmacros /home/builder/.rpmmacros
+COPY RPM-GPG-KEY-remi /etc/pki/mock/RPM-GPG-KEY-remi
 
 VOLUME /home/builder/rpmbuild /home/builder/.gnupg /var/cache/mock
 USER builder
