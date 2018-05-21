@@ -16,8 +16,8 @@ Version:       %{extver}
 Release:       1%{?dist}
 License:       PHP
 Group:         Development/Languages
-URL:           http://pecl.php.net/package/%{pecl_name}
-Source:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
+URL:           https://pecl.php.net/package/%{pecl_name}
+Source:        https://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: %{basepkg}-devel >= 5.1.0, %{basepkg}-pear
 Requires(post): %{__pecl}
