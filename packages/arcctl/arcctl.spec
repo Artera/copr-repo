@@ -8,7 +8,7 @@ Summary:    CLI tools to manage Areca's ARC11xx/ARC12xx/ARC16xx/ARC18xx RAID con
 Group:      System Environment/Daemons
 License:    custom
 URL:        http://www.areca.com.tw/support/s_linux/linux.htm
-Source0:    http://www.areca.us/support/s_linux/cli/linuxcli_V%{version}.zip
+Source0:    https://downloads.artera.it/mirror/arcctl_v%{version}.zip
 
 %description
 CLI tools to manage Areca's ARC11xx/ARC12xx/ARC16xx/ARC18xx RAID controllers.
