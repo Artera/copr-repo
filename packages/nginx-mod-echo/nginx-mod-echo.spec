@@ -10,7 +10,7 @@ URL: https://github.com/openresty/echo-nginx-module
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 
-Source0: http://nginx.org/download/nginx-%{_nginxver}.tar.gz
+Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/openresty/echo-nginx-module/archive/v%{version}/%{_modname}-%{version}.tar.gz
 
 Requires: nginx

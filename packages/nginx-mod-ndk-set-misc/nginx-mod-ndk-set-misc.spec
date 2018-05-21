@@ -12,7 +12,7 @@ URL: https://github.com/openresty/echo-nginx-module
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 
-Source0: http://nginx.org/download/nginx-%{_nginxver}.tar.gz
+Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/openresty/set-misc-nginx-module/archive/v%{_setmiscver}/set-misc-%{_setmiscver}.tar.gz
 Source2: https://github.com/simpl/ngx_devel_kit/archive/v%{_ndkver}/ngx_devel_kit-%{_ndkver}.tar.gz
 

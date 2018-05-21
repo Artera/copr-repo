@@ -11,7 +11,7 @@ URL: https://github.com/nginx-modules/ngx_cache_purge
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 %define mod_build_dir       %{_builddir}/%{_modname}-%{version}
 
-Source0: http://nginx.org/download/nginx-%{_nginxver}.tar.gz
+Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/nginx-modules/ngx_cache_purge/archive/%{version}/%{_modname}-%{version}.tar.gz
 
 Requires: nginx

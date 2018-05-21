@@ -11,8 +11,8 @@ URL: https://www.nginx.com/resources/wiki/modules/redis/
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 %define mod_build_dir       %{_builddir}/%{_modname}-%{version}
 
-Source0: http://nginx.org/download/nginx-%{_nginxver}.tar.gz
-Source1: http://people.freebsd.org/~osa/ngx_http_redis-%{version}.tar.gz
+Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
+Source1: https://people.freebsd.org/~osa/ngx_http_redis-%{version}.tar.gz
 
 Requires: nginx
 BuildRequires: nginx
