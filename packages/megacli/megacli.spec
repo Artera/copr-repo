@@ -1,7 +1,7 @@
 Summary:	LSI Logic MegaRAID Linux MegaCLI utility
 Name:		megacli
 Version:	8.07.14
-Release:	1
+Release:	1%{?dist}
 License:	Proprietary
 Group:		Applications/System
 Source0:	https://downloads.artera.it/8-07-14_MegaCLI.zip
