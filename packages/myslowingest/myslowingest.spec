@@ -14,6 +14,7 @@ License:    Proprietary
 
 Group:      Applications/System
 URL:        https://git.artera.it/sysadmin/myslowingest
+ExclusiveArch: x86_64
 Source0:    https://downloads.artera.it/%{name}-linux-bin-%{version}.gz
 Source1:    myslowingest.service
 Source2:    filebeat-mysqlslow.yml
