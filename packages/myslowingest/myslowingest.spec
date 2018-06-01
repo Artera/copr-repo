@@ -14,11 +14,9 @@ License:    Proprietary
 
 Group:      Applications/System
 URL:        https://git.artera.it/sysadmin/myslowingest
-Source0:    %{name}-%{version}.tar.gz
-
-BuildRequires: rust
-BuildRequires: cargo
-BuildRequires: cmake
+Source0:    https://downloads.artera.it/%{name}-linux-bin-%{version}.gz
+Source1:    myslowingest.service
+Source2:    filebeat-mysqlslow.yml
 
 %{?with_init_systemd:BuildRequires: systemd-devel}
 %if %{with init_systemd}
@@ -29,21 +27,12 @@ BuildRequires: cmake
 %{summary}
 
 %prep
-%setup -c %{name}-%{version}
-
-%build
-cd %{_builddir}/%{name}-%{version}
-cargo build --release
+gzip -dc %{SOURCE0} > %{_builddir}/%{name}
 
 %install
-cargo install --root %{buildroot}/usr
-rm -f %{buildroot}/usr/.crates.toml
-
-%{__install} -Dm644 %{_builddir}/%{name}-%{version}/%{name}.service \
-    $RPM_BUILD_ROOT%{_unitdir}/%{name}.service
-
-%{__install} -Dm644 %{_builddir}/%{name}-%{version}/filebeat-mysqlslow.yml \
-    $RPM_BUILD_ROOT%{_sysconfdir}/filebeat/filebeat-mysqlslow.yml
+%{__install} -Dm755 %{_builddir}/%{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
+%{__install} -Dm644 %{SOURCE1} $RPM_BUILD_ROOT%{_unitdir}/%{name}.service
+%{__install} -Dm644 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/filebeat/filebeat-mysqlslow.yml
 
 %clean
 rm -rf %{buildroot}

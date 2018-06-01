@@ -1,0 +1,14 @@
+[Unit]
+Description=MySQL slowlog ingestor
+
+[Service]
+Type=simple
+User=mysql
+Group=mysql
+ExecStartPre=/bin/mkdir -p /var/lib/mysql/slowlog/
+ExecStart=/bin/sh -c "/usr/bin/filebeat --path.data /var/lib/mysql/slowlog --path.logs /var/lib/mysql/slowlog -c /etc/filebeat/filebeat-mysqlslow.yml | /usr/bin/myslowingest /var/lib/mysql/slowlog/db.sqlite"
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

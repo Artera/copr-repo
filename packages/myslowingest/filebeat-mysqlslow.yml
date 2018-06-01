@@ -1,0 +1,18 @@
+filebeat:
+  name: myslowingest
+  registry_file: /var/lib/mysql/slowlog/filebeat.registry
+
+  modules:
+  - module: mysql
+    error:
+      enabled: false
+    slowlog:
+      enabled: true
+      var:
+        paths: ["/var/lib/mysql/mysql-slow.log"]
+
+output:
+  console:
+    codec:
+      json:
+        pretty: false
