@@ -1,7 +1,7 @@
 Summary: nginScript module for nginx
 Name: nginx-mod-njs
 Version: 0.1.15
-Release: 1%{?dist}
+Release: 2%{?dist}
 Vendor: Artera
 URL: https://nginx.org/en/docs/njs_about.html
 
@@ -42,7 +42,7 @@ nginScript module for nginx.
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}
-./configure --with-compat --with-stream --add-dynamic-module=../njs-%{version}/nginx
+./configure %(nginx -V 2>&1 | grep 'configure arguments' | sed -r 's@^[^:]+: @@') --with-stream --add-dynamic-module=../njs-%{version}/nginx
 make modules
 
 %install
