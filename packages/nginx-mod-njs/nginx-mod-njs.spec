@@ -38,7 +38,7 @@ nginScript module for nginx.
 
 %prep
 %setup -q -n nginx-%{_nginxver}
-%setup -T -D -b 1 -n %{_modname}-nginx-module-%{version}
+%setup -T -D -b 1 -n %{_modname}-%{version}
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}
