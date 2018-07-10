@@ -11,7 +11,7 @@ URL: https://nginx.org/en/docs/njs_about.html
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
-Source1: https://hg.nginx.org/njs/archive/%{version}.tar.gz#%{_modname}-%{version}.tar.gz
+Source1: https://hg.nginx.org/njs/archive/%{version}.tar.gz#/%{_modname}-%{version}.tar.gz
 
 Requires: nginx
 BuildRequires: nginx
