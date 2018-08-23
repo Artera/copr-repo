@@ -8,7 +8,7 @@
 
 Name:       myslowingest
 Version:    0.2.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Parses slowlog messages passed through standard input by a filebeat process and inserts the structured records into a sqlite database
 License:    Proprietary
 
@@ -42,6 +42,17 @@ gzip -dc %{SOURCE0} > %{_builddir}/%{name}
 
 %clean
 rm -rf %{buildroot}
+
+%if %{use_systemd}
+%post
+%systemd_post %{name}.service
+
+%preun
+%systemd_preun %{name}.service
+
+%postun
+%systemd_postun_with_restart %{name}.service
+%endif
 
 %files
 %defattr(-,root,root,-)
