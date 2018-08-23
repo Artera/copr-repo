@@ -43,7 +43,7 @@ gzip -dc %{SOURCE0} > %{_builddir}/%{name}
 %clean
 rm -rf %{buildroot}
 
-%if %{use_systemd}
+%if %{with init_systemd}
 %post
 %systemd_post %{name}.service
 
