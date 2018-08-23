@@ -7,7 +7,7 @@
 %endif
 
 Name:       myslowingest
-Version:    0.1.1
+Version:    0.2.0
 Release:    1%{?dist}
 Summary:    Parses slowlog messages passed through standard input by a filebeat process and inserts the structured records into a sqlite database
 License:    Proprietary
@@ -16,8 +16,9 @@ Group:      Applications/System
 URL:        https://git.artera.it/sysadmin/myslowingest
 ExclusiveArch: x86_64
 Source0:    https://downloads.artera.it/%{name}-linux-bin-%{version}.gz
-Source1:    myslowingest.service
-Source2:    filebeat-mysqlslow.yml
+Source1:    filebeat-mysqlslow.yml
+Source2:    myslowingest.service
+Source3:    myslowingest-rc.sh
 
 %{?with_init_systemd:BuildRequires: systemd-devel}
 %if %{with init_systemd}
@@ -32,8 +33,12 @@ gzip -dc %{SOURCE0} > %{_builddir}/%{name}
 
 %install
 %{__install} -Dm755 %{_builddir}/%{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
-%{__install} -Dm644 %{SOURCE1} $RPM_BUILD_ROOT%{_unitdir}/%{name}.service
-%{__install} -Dm644 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/filebeat/filebeat-mysqlslow.yml
+%{__install} -Dm644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/filebeat/filebeat-mysqlslow.yml
+%if %{with init_systemd}
+%{__install} -Dm644 %{SOURCE2} $RPM_BUILD_ROOT%{_unitdir}/%{name}.service
+%else
+%{__install} -Dm755 %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/init.d/%{name}
+%endif
 
 %clean
 rm -rf %{buildroot}
@@ -44,6 +49,8 @@ rm -rf %{buildroot}
 %{_sysconfdir}/filebeat/filebeat-mysqlslow.yml
 %if %{with init_systemd}
 %{_unitdir}/%{name}.service
+%else
+%config(noreplace)%{_sysconfdir}/init.d/%{name}
 %endif
 
 %changelog
