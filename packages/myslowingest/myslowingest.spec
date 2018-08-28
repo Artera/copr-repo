@@ -7,8 +7,8 @@
 %endif
 
 Name:       myslowingest
-Version:    0.2.0
-Release:    2%{?dist}
+Version:    0.2.1
+Release:    1%{?dist}
 Summary:    Parses slowlog messages passed through standard input by a filebeat process and inserts the structured records into a sqlite database
 License:    Proprietary
 
