@@ -1,7 +1,7 @@
 Summary: Redis caching module for mainline nginx
 Name: nginx-mod-redis
-Version: 0.3.8
-Release: 2%{?dist}
+Version: 0.3.9
+Release: 1%{?dist}
 Vendor: Artera
 URL: https://www.nginx.com/resources/wiki/modules/redis/
 
