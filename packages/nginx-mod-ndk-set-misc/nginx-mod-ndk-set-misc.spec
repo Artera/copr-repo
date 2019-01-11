@@ -1,10 +1,10 @@
-%define _setmiscver         0.31
+%define _setmiscver         0.32
 %define _ndkver             0.3.0
 
 Summary: Various set_xxx directives added to nginx's rewrite + ngx_devel_kit
 Name: nginx-mod-ndk-set-misc
 Version: %{_ndkver}+%{_setmiscver}
-Release: 2%{?dist}
+Release: 1%{?dist}
 Vendor: Artera
 URL: https://github.com/openresty/echo-nginx-module
 
