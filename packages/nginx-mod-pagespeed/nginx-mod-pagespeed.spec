@@ -43,7 +43,10 @@ sed -r 's@^pagespeed_libs="(\$psol_binary.*)"@pagespeed_libs="\1 -Wl,-z,noexecst
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}
-./configure %(nginx -V 2>&1 | grep 'configure arguments' | sed -r 's@^[^:]+: @@') --add-dynamic-module=../incubator-pagespeed-ngx-%{_pagespeedver}
+./configure %(nginx -V 2>&1 | grep 'configure arguments' | sed -r 's@^[^:]+: @@') --add-dynamic-module=../incubator-pagespeed-ngx-%{_pagespeedver} || {
+    cat %{nginx_build_dir}/objs/autoconf.err
+    exit 1
+}
 make modules
 
 %install
