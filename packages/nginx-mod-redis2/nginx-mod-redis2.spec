@@ -1,6 +1,6 @@
 Summary: Redis 2.0 protocol module
 Name: nginx-mod-redis2
-Version: 0.14
+Version: 0.15
 Release: 1%{?dist}
 Vendor: Artera
 URL: https://github.com/openresty/redis2-nginx-module
