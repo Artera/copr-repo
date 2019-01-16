@@ -21,6 +21,7 @@ Source1: https://github.com/pagespeed/ngx_pagespeed/archive/v%{_pagespeedver}/%{
 Source2: https://dl.google.com/dl/page-speed/psol/%{_psolver}-x64.tar.gz#/pagespeed-%{_psolver}-x86_64.tar.gz
 
 Requires: nginx
+BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf
 BuildRequires: automake
@@ -28,6 +29,12 @@ BuildRequires: openssl-devel
 BuildRequires: pcre-devel
 BuildRequires: zlib-devel
 BuildRequires: perl-devel
+BuildRequires: gd-devel
+BuildRequires: GeoIP-devel
+BuildRequires: libxslt-devel
+BuildRequires: perl-devel
+BuildRequires: perl(ExtUtils::Embed)
+BuildRequires: gperftools-devel
 BuildRequires: libuuid-devel
 
 License: GPL3
