@@ -18,7 +18,7 @@ sed -r -e "s@^%_topdir .*@%_topdir $PKGHOME@" \
 mkdir -p "$RESULTDIR"
 
 rm -f "$RESULTDIR"/$NAME-*.src.rpm
-spectool -d "%_topdir $PKGHOME" -d "%_specdir $PKGHOME" -d "%_sourcedir $PKGHOME" -g -R "$PKGHOME"/$NAME.spec
+spectool -d "%_topdir $PKGHOME" -d "%_specdir $PKGHOME" -d "%_sourcedir $PKGHOME" -d "rhel $RELVER" -g -R "$PKGHOME"/$NAME.spec
 /usr/bin/mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" --buildsrpm --spec "$PKGHOME"/$NAME.spec --sources "$PKGHOME"
 /usr/bin/mock -r $TARGET -D "rhel $RELVER" --resultdir "$RESULTDIR" rebuild "$RESULTDIR"/$NAME-*.src.rpm
 
