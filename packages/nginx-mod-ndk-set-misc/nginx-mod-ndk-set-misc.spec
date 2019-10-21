@@ -8,11 +8,7 @@ Release: 1%{?dist}
 Vendor: Artera
 URL: https://github.com/openresty/set-misc-nginx-module
 
-%if 0%{?rhel} < 7
-%define _nginxver           1.10.2
-%else
 %define _nginxver           1.16.1
-%endif
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 

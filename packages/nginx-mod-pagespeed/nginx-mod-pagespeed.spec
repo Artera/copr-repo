@@ -6,11 +6,7 @@ Vendor: Artera
 URL: https://www.ngxpagespeed.com/
 
 %define _modname            ngx_pagespeed
-%if 0%{?rhel} < 7
-%define _nginxver           1.10.2
-%else
 %define _nginxver           1.16.1
-%endif
 %define _pagespeedver       %{version}-stable
 %define _psolver            %{version}
 %define nginx_config_dir    %{_sysconfdir}/nginx
