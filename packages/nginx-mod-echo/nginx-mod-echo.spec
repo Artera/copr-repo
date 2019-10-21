@@ -1,19 +1,23 @@
 Summary: Directives "echo", "sleep", "time" and more
 Name: nginx-mod-echo
 Version: 0.61
-Release: 1%{?dist}
+Release: 2%{?dist}
 Vendor: Artera
 URL: https://github.com/openresty/echo-nginx-module
 
 %define _modname            echo
-%define _nginxver           1.12.2
+%if 0%{?rhel} < 7
+%define _nginxver           1.10.2
+%else
+%define _nginxver           1.16.1
+%endif
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/openresty/echo-nginx-module/archive/v%{version}/%{_modname}-%{version}.tar.gz
 
-Requires: nginx
+Requires: nginx = %{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf

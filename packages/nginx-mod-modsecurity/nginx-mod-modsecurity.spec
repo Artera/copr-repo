@@ -1,19 +1,23 @@
 Summary: ModSecurity v3 Nginx Connector (module for nginx)
 Name: nginx-mod-modsecurity
 Version: 1.0.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 Vendor: Artera
 URL: https://github.com/SpiderLabs/ModSecurity-nginx
 
 %define _modname            modsecurity
-%define _nginxver           1.12.2
+%if 0%{?rhel} < 7
+%define _nginxver           1.10.2
+%else
+%define _nginxver           1.16.1
+%endif
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/SpiderLabs/ModSecurity-nginx/releases/download/v%{version}/%{_modname}-nginx-v%{version}.tar.gz
 
-Requires: nginx
+Requires: nginx = %{_nginxver}
 Requires: libmodsecurity
 BuildRequires: libtool
 BuildRequires: autoconf

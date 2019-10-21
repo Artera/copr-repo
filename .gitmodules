@@ -7,9 +7,6 @@
 [submodule "packages/gitflow"]
 	path = packages/gitflow
 	url = https://src.fedoraproject.org/git/rpms/gitflow.git
-[submodule "packages/stunnel"]
-	path = packages/stunnel
-	url = https://src.fedoraproject.org/git/rpms/stunnel.git
 [submodule "packages/geoipupdate"]
 	path = packages/geoipupdate
 	url = https://src.fedoraproject.org/git/rpms/geoipupdate.git

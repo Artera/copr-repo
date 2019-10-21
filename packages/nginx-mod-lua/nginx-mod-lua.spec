@@ -1,6 +1,6 @@
 Summary: Lua script engine module for nginx
 Name: nginx-mod-lua
-Version: 0.10.13
+Version: 0.10.15
 Release: 1%{?dist}
 Vendor: Artera
 URL: https://github.com/openresty/lua-nginx-module
@@ -9,7 +9,7 @@ URL: https://github.com/openresty/lua-nginx-module
 %if 0%{?rhel} < 7
 %define _nginxver           1.10.2
 %else
-%define _nginxver           1.12.2
+%define _nginxver           1.16.1
 %endif
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
@@ -17,7 +17,7 @@ URL: https://github.com/openresty/lua-nginx-module
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/openresty/lua-nginx-module/archive/v%{version}/%{_modname}-%{version}.tar.gz
 
-Requires: nginx
+Requires: nginx = %{_nginxver}
 Requires: nginx-mod-ndk-set-misc
 Requires: luajit
 BuildRequires: nginx

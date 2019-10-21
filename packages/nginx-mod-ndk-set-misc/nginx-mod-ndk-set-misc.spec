@@ -1,14 +1,18 @@
 %define _setmiscver         0.32
-%define _ndkver             0.3.0
+%define _ndkver             0.3.1
 
 Summary: Various set_xxx directives added to nginx's rewrite + ngx_devel_kit
 Name: nginx-mod-ndk-set-misc
 Version: %{_ndkver}+%{_setmiscver}
 Release: 1%{?dist}
 Vendor: Artera
-URL: https://github.com/openresty/echo-nginx-module
+URL: https://github.com/openresty/set-misc-nginx-module
 
-%define _nginxver           1.12.2
+%if 0%{?rhel} < 7
+%define _nginxver           1.10.2
+%else
+%define _nginxver           1.16.1
+%endif
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 
@@ -16,7 +20,7 @@ Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/openresty/set-misc-nginx-module/archive/v%{_setmiscver}/set-misc-%{_setmiscver}.tar.gz
 Source2: https://github.com/simpl/ngx_devel_kit/archive/v%{_ndkver}/ngx_devel_kit-%{_ndkver}.tar.gz
 
-Requires: nginx
+Requires: nginx = %{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf

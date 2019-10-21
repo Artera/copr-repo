@@ -1,7 +1,7 @@
 Summary: PageSpeed module for nginx
 Name: nginx-mod-pagespeed
 Version: 1.13.35.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 Vendor: Artera
 URL: https://www.ngxpagespeed.com/
 
@@ -9,7 +9,7 @@ URL: https://www.ngxpagespeed.com/
 %if 0%{?rhel} < 7
 %define _nginxver           1.10.2
 %else
-%define _nginxver           1.12.2
+%define _nginxver           1.16.1
 %endif
 %define _pagespeedver       %{version}-stable
 %define _psolver            %{version}
@@ -20,7 +20,7 @@ Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/pagespeed/ngx_pagespeed/archive/v%{_pagespeedver}/%{_modname}-%{_pagespeedver}.tar.gz
 Source2: https://dl.google.com/dl/page-speed/psol/%{_psolver}-x64.tar.gz#/pagespeed-%{_psolver}-x86_64.tar.gz
 
-Requires: nginx
+Requires: nginx = %{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf

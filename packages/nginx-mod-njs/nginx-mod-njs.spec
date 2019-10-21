@@ -1,19 +1,25 @@
 Summary: nginScript module for nginx
 Name: nginx-mod-njs
-Version: 0.1.15
-Release: 2%{?dist}
 Vendor: Artera
 URL: https://nginx.org/en/docs/njs_about.html
 
 %define _modname            njs
-%define _nginxver           1.12.2
+%if 0%{?rhel} < 7
+%define _nginxver           1.10.2
+Version: 0.1.15
+Release: 2%{?dist}
+%else
+%define _nginxver           1.16.1
+Version: 0.3.5
+Release: 1%{?dist}
+%endif
 %define nginx_config_dir    %{_sysconfdir}/nginx
 %define nginx_build_dir     %{_builddir}/nginx-%{_nginxver}
 
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://hg.nginx.org/njs/archive/%{version}.tar.gz#/%{_modname}-%{version}.tar.gz
 
-Requires: nginx
+Requires: nginx = %{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf
