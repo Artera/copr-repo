@@ -14,7 +14,7 @@ URL: https://github.com/nbs-system/naxsi
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/nbs-system/naxsi/archive/%{version}/%{_modname}-%{version}.tar.gz
 
-Requires: nginx = %{_nginxver}
+Requires: nginx = 1:%{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf

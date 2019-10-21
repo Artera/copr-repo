@@ -13,7 +13,7 @@ URL: https://nginx.org/en/docs/njs_about.html
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://hg.nginx.org/njs/archive/%{version}.tar.gz#/%{_modname}-%{version}.tar.gz
 
-Requires: nginx = %{_nginxver}
+Requires: nginx = 1:%{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf

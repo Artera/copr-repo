@@ -16,7 +16,7 @@ Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/openresty/set-misc-nginx-module/archive/v%{_setmiscver}/set-misc-%{_setmiscver}.tar.gz
 Source2: https://github.com/simpl/ngx_devel_kit/archive/v%{_ndkver}/ngx_devel_kit-%{_ndkver}.tar.gz
 
-Requires: nginx = %{_nginxver}
+Requires: nginx = 1:%{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf

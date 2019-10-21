@@ -16,7 +16,7 @@ Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/pagespeed/ngx_pagespeed/archive/v%{_pagespeedver}/%{_modname}-%{_pagespeedver}.tar.gz
 Source2: https://dl.google.com/dl/page-speed/psol/%{_psolver}-x64.tar.gz#/pagespeed-%{_psolver}-x86_64.tar.gz
 
-Requires: nginx = %{_nginxver}
+Requires: nginx = 1:%{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf

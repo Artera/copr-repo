@@ -13,7 +13,7 @@ URL: https://github.com/SpiderLabs/ModSecurity-nginx
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://github.com/SpiderLabs/ModSecurity-nginx/releases/download/v%{version}/%{_modname}-nginx-v%{version}.tar.gz
 
-Requires: nginx = %{_nginxver}
+Requires: nginx = 1:%{_nginxver}
 Requires: libmodsecurity
 BuildRequires: libtool
 BuildRequires: autoconf

@@ -14,7 +14,7 @@ URL: https://www.nginx.com/resources/wiki/modules/redis/
 Source0: https://nginx.org/download/nginx-%{_nginxver}.tar.gz
 Source1: https://people.freebsd.org/~osa/ngx_http_redis-%{version}.tar.gz
 
-Requires: nginx = %{_nginxver}
+Requires: nginx = 1:%{_nginxver}
 BuildRequires: nginx
 BuildRequires: libtool
 BuildRequires: autoconf
