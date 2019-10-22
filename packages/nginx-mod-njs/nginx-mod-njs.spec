@@ -1,6 +1,6 @@
 Summary: nginScript module for nginx
 Name: nginx-mod-njs
-Version: 0.3.5
+Version: 0.3.6
 Release: 1%{?dist}
 Vendor: Artera
 URL: https://nginx.org/en/docs/njs_about.html
