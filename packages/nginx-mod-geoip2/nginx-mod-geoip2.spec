@@ -43,7 +43,7 @@ GeoIP2 module for nginx.
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}
-./configure %(nginx -V 2>&1 | grep 'configure arguments' | sed -r 's@^[^:]+: @@') --add-dynamic-module=../%{_modname}-nginx-module-%{version}
+./configure %(nginx -V 2>&1 | grep 'configure arguments' | sed -r 's@^[^:]+: @@') --add-dynamic-module=../ngx_http_%{_modname}_module-%{version}
 make modules
 
 %install
