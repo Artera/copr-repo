@@ -39,7 +39,7 @@ GeoIP2 module for nginx.
 
 %prep
 %setup -q -n nginx-%{_nginxver}
-%setup -T -D -b 1 -n %{_modname}-nginx-module-%{version}
+%setup -T -D -b 1 -n ngx_http_%{_modname}_module-%{version}
 
 %build
 cd %{_builddir}/nginx-%{_nginxver}
@@ -49,8 +49,8 @@ make modules
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -Dm755 %{nginx_build_dir}/objs/ngx_http_geoip2_module.so \
-    $RPM_BUILD_ROOT%{_libdir}/nginx/modules/ngx_http_geoip2_module.so
+%{__install} -Dm755 %{nginx_build_dir}/objs/ngx_http_%{_modname}_module.so \
+    $RPM_BUILD_ROOT%{_libdir}/nginx/modules/ngx_http_%{_modname}_module.so
 
 %clean
 %{__rm} -rf %{buildroot}
