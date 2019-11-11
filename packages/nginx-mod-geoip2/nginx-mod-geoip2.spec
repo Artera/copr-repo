@@ -1,6 +1,6 @@
 Summary: GeoIP2 module for nginx
 Name: nginx-mod-geoip2
-Version: 3.2
+Version: 3.3
 Release: 1%{?dist}
 Vendor: Artera
 URL: https://github.com/leev/ngx_http_geoip2_module
